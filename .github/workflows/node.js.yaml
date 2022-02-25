@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Run the tests
-        run: yarn nx affected:test -- --base=remotes/origin/master --head=HEAD^
+        run: yarn nx affected:test -- --base=remotes/origin/master~1
 
 
 
