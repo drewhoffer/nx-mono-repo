@@ -31,7 +31,7 @@ jobs:
         run: yarn
 
       - name: Run the tests
-        run: yarn nx affected:test --base=origin/master --parallel
+        run: yarn nx affected:test --base=master~1 --head=HEAD --parallel
 
 
 
