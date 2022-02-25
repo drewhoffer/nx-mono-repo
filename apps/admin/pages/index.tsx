@@ -6,7 +6,7 @@ export function Index() {
    *
    * Note: The corresponding styles are in the ./index.css file.
    */
-  return <div className={styles.page}>Rerun action #5</div>;
+  return <div className={styles.page}>Rerun action #6</div>;
 }
 
 export default Index;

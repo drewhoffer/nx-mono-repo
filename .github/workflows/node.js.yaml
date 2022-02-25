@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Run the tests
-        run: yarn nx affected:test -- --base=remotes/origin/master
+        run: yarn nx affected:test -- --base=remotes/origin/master --head=HEAD
 
 
 
@@ -58,7 +58,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn nx affected:build -- --base=remotes/origin/master
+        run: yarn nx affected:build -- --base=remotes/origin/master --head=HEAD
 
    Lint:
     runs-on: ubuntu-latest
@@ -83,4 +83,4 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn nx affected:lint -- --base=remotes/origin/master
+        run: yarn nx affected:lint -- --base=remotes/origin/master --head=HEAD
