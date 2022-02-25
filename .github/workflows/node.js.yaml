@@ -19,19 +19,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 2
-      - run: git checkout HEAD^
+          fetch-depth: 0
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
+      - run: git fetch origin main
       - name: Install dependencies
         run: yarn
-
       - name: Run the tests
-        run: yarn nx affected:test --base=master~1 --head=HEAD --parallel
+        run: yarn nx affected:test -- --base=remotes/origin/master
+
 
 
 
@@ -44,17 +44,21 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
+      - run: git fetch origin main
+
       - name: Install dependencies
         run: yarn
 
       - name: Build
-        run: yarn nx affected:build --base=origin/master --parallel
+        run: yarn nx affected:build -- --base=remotes/origin/master
 
    Lint:
     runs-on: ubuntu-latest
@@ -65,14 +69,18 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
+      - run: git fetch origin main
+
       - name: Install dependencies
         run: yarn
 
       - name: Build
-        run: yarn nx affected:lint --base=origin/master --parallel
+        run: yarn nx affected:lint -- --base=remotes/origin/master
