@@ -1,10 +1,8 @@
 
-name: Nx Affected Test - Master
+name: Nx Affected Test - Push to Master
 
 on:
   push:
-    branches: [master]
-  pull_request:
     branches: [master]
 
 jobs:
@@ -30,57 +28,57 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Run the tests
-        run: yarn nx affected:test -- --base=remotes/origin/master --head=HEAD~1
+        run: yarn nx affected:test -- --base=remotes/origin/master --head=HEAD^
 
 
 
 
-   Build:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        node-version: [16.x]
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+  #  Build:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: true
+  #     matrix:
+  #       node-version: [16.x]
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+  #     - name: Set up Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
 
-      - run: git fetch origin master
+  #     - run: git fetch origin master
 
-      - name: Install dependencies
-        run: yarn
+  #     - name: Install dependencies
+  #       run: yarn
 
-      - name: Build
-        run: yarn nx affected:build -- --base=remotes/origin/master --head=HEAD
+  #     - name: Build
+  #       run: yarn nx affected:build -- --base=remotes/origin/master --head=HEAD
 
-   Lint:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        node-version: [16.x]
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+  #  Lint:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: true
+  #     matrix:
+  #       node-version: [16.x]
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+  #     - name: Set up Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
 
-      - run: git fetch origin master
+  #     - run: git fetch origin master
 
-      - name: Install dependencies
-        run: yarn
+  #     - name: Install dependencies
+  #       run: yarn
 
-      - name: Build
-        run: yarn nx affected:lint -- --base=remotes/origin/master --head=HEAD
+  #     - name: Build
+  #       run: yarn nx affected:lint -- --base=remotes/origin/master --head=HEAD
