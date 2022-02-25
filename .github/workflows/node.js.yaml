@@ -28,7 +28,7 @@ jobs:
         run: yarn
 
       - name: Run the tests
-        run: yarn nx affected:test
+        run: yarn nx affected:test --base=origin/master --parallel
 
 
 
@@ -51,7 +51,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn nx affected:build
+        run: yarn nx affected:build --base=origin/master --parallel
 
    Lint:
     runs-on: ubuntu-latest
@@ -72,4 +72,4 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn nx affected:lint
+        run: yarn nx affected:lint --base=origin/master --parallel
